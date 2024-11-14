@@ -3,7 +3,7 @@
 ## Team members
 - **Adam** (responsible for shunt)
 - **Radek** (responsible for voltage divider)
-- **Marek** (responsible for OLED)
+- **Marek** (responsible for OLED, README, schematic)
 
 ## TO-DO
 
