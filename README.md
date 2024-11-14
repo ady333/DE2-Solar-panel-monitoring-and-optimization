@@ -1,10 +1,13 @@
 # DE2-Solar-panel-monitoring-and-optimization
 
 ## Team members
-- Adam
-- Radek
-- Marek
-  
+- **Adam** (responsible for shunt)
+- **Radek** (responsible for voltage divider)
+- **Marek** (responsible for OLED)
+
+## TO-DO
+
+
 ## Hardware description
 Describe your implementation and include block or circuit diagram(s).
 
@@ -15,6 +18,6 @@ Include flowcharts/state diagrams of your algorithm(s) and direct links to the s
 Describe how to use the application. Add photos or videos of your application.
 
 ## References and tools
-- https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531
-- https://openai.com/
-- 
+- [Simple Arduino Solar Radiation Meter](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
+- [CHat GPT](https://openai.com/)
+  
