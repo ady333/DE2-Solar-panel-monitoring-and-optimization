@@ -3,7 +3,8 @@ Description place holder
 */
 
 // --Includes-------------------------------------------------------------------//
-# include <avr/io.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 // --Defines--------------------------------------------------------------------//
 
@@ -13,10 +14,11 @@ Description place holder
 
 int main(void)
 {
-
+ini
 }
 
 // -- Interrupt service routines ------------------------------------------------//
+
 
 
 
