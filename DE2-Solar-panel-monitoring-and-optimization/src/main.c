@@ -14,7 +14,7 @@ Description place holder
 
 int main(void)
 {
-ini
+
 }
 
 // -- Interrupt service routines ------------------------------------------------//
