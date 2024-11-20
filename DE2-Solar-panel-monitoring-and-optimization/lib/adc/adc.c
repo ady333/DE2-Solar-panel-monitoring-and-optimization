@@ -5,6 +5,7 @@
 #include "adc.h"
 
 //--Function definitions-------------------------------------------------------//
+
 void adc_init(void)
 {
     ADMUX = 0x40; //Reference voltage is AVCC and 10-bit resolution
