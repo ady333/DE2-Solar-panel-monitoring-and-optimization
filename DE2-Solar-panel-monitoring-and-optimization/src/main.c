@@ -6,6 +6,8 @@ Description place holder
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+#include "adc.h"
+
 // --Defines--------------------------------------------------------------------//
 
 // --Variables------------------------------------------------------------------//
