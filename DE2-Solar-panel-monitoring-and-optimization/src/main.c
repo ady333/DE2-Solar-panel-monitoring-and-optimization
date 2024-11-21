@@ -13,6 +13,7 @@ Description place holder
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
+#define ADC_PIN 0
 
 // --Variables------------------------------------------------------------------//
 // -- Global variables -----------------------------------------------
@@ -52,9 +53,14 @@ void oled_setup(void)
 // main loop
 int main(void)
 {
-    //oled init
+    //initialization
     twi_init();
     oled_setup();
+    adc_init();
+    TIM1_ovf_262ms();
+
+    sai();
+    
     //oled placeholder loop
      while (1)
     {
@@ -99,8 +105,33 @@ int main(void)
 }
 
 // -- Interrupt service routines ------------------------------------------------//
+ISR(TIMER0_COMPA_vect)
+{
+    //execute whole routine once a second
+    static uint8_t cnt = 0;
+    if (cnt == 3)
+    {
+
+        //read value from ADC
+        static uint16_t solar_voltage;
+        solar_voltage = adc_read(ADC_PIN);
+
+        //read value from I2C shunt
 
 
+        //calculate power
 
+
+        //calculate energy
+
+
+        //calculate efficiency
+
+
+        //update OLED
+        
+    }
+    cnt++;
+}
 
 // -- end of file --//
