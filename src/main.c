@@ -115,21 +115,22 @@ ISR(TIMER0_COMPA_vect)
         //read value from ADC
         static uint16_t solar_voltage;
         solar_voltage = adc_read(ADC_PIN);
+            //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
 
         //read value from I2C shunt
-
+        //TODO:
 
         //calculate power
-
+        //TODO:
 
         //calculate energy
-
+        //TODO:
 
         //calculate efficiency
-
+        //TODO:
 
         //update OLED
-        
+        flag_update_oled = 1;
     }
     cnt++;
 }

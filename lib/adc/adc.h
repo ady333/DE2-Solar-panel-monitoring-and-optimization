@@ -11,8 +11,8 @@
 /**
  * @brief Initializes ADC peripheral.
  *
- * This function configures and initializes the ADC1 peripheral for use.
- * It sets up the necessary registers and parameters to enable ADC1
+ * This function configures and initializes the ADC peripheral for use.
+ * It sets up the necessary registers and parameters to enable ADC
  * functionality.
  */
 void adc_init(void);
