@@ -41,12 +41,12 @@ void oled_setup(void)
     oled_gotoxy(0, 4);
     //oled_puts("Solar radiation [Wh/m2]:);
     oled_gotoxy(0, 6);
-    //oled_puts("Temperature [C]:");
-    oled_gotoxy(0, 7);
+    //oled_puts("Energy output [J]:");
+    oled_gotoxy(0, 8);
     //oled_puts("Efficiency [\%]:");
 
     // Copy buffer to display RAM
-    //oled_display();
+    oled_display();
 }
 
 // main loop
@@ -60,24 +60,33 @@ int main(void)
     {
         if (flag_update_oled == 1)
         {
-            // Clear previous temperature value on OLED
-            oled_gotoxy(17, 6);
+            // Clear previous radiation value on OLED
+            oled_gotoxy(0, 5);
             oled_puts("    ");
 
-            // Display new temperature data
-            oled_gotoxy(17, 6);
-            sprintf(oled_msg, "%u.%u", dht12_values[2], dht12_values[3]);
-            oled_puts(oled_msg);
+            // Display new radiation data
+            oled_gotoxy(0, 5);
+            //sprintf(oled_msg, "%u.%u", var?, var?);
+            //oled_puts(oled_msg);
 
-            // Clear previous humidity values on OLED
-            oled_gotoxy(17, 7);
+            // Clear previous energy values on OLED
+            oled_gotoxy(0, 7);
             oled_puts("    ");
 
-            // Display new humidity data
-            oled_gotoxy(17, 7);
-            sprintf(oled_msg, "%u.%u", dht12_values[0], dht12_values[1]);
-            oled_puts(oled_msg);
+            // Display new energy data
+            oled_gotoxy(0, 7);
+            //sprintf(oled_msg, "%u.%u", var?, var?);
+            //oled_puts(oled_msg);
 
+            // Clear previous efficiency values on OLED
+            oled_gotoxy(0, 9);
+            oled_puts("    ");
+        
+            // Display new efficiency data
+            oled_gotoxy(0, 9);
+            //sprintf(oled_msg, "%u.%u", var?, var?);
+            //oled_puts(oled_msg);
+            
             oled_display();
 
             // Do not print it again and wait for the new data
