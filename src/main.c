@@ -5,15 +5,16 @@ Description place holder
 // --Includes-------------------------------------------------------------------//
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "timer.h"          
+#include <timer.h>        
 #include <twi.h>            
 #include <oled.h>
 #include <stdio.h>          
-#include "adc.h"
+#include <adc.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
 #define ADC_PIN 0
+//OLED is A5 and A4
 
 // --Variables------------------------------------------------------------------//
 // -- Global variables -----------------------------------------------
