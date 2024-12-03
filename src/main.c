@@ -22,6 +22,34 @@ volatile uint8_t flag_update_oled = 0;
 // sensor data var
 
 // --Function definitions-------------------------------------------------------//
+
+// -- Photoresistor reading function -------------------------------------------//
+
+/**
+ * @brief Reads the analog value from specified phtorezistor.
+ *
+ *  This function initiates an analog-to-digital conversion on the specified
+ *  photozezistor by setting the digital pin high
+ * 
+ * @param ADC_pin The ADC pin number from which to read the analog value.
+ *           
+ * @param digital_pin The digital pin number to set high to enable the photoresistor.
+ * 
+ * @return The 10-bit digital value corresponding to the analog input on the 
+ *         specified ADC pin. The value ranges from 0 to 1023.
+ */
+uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
+{
+    static uint16_t adc_reading;
+
+    //gpio high digital pin
+    adc_reading = adc_read(ADC_pin);
+    //gpio low digital pin
+
+    return adc_reading;
+}
+
+
 // oled setup placeholder
 void oled_setup(void)
 {
