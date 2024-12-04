@@ -44,6 +44,7 @@ struct panel_data { // test?
     int16_t power;
     int16_t servo_angle;
 };
+struct panel_data panel_data;
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
 
