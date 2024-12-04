@@ -11,29 +11,45 @@ Description place holder
 #include <stdio.h>          
 #include <adc.h>
 #include <gpio.h>
+#include <stdbool.h>
+#include <servo.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
 #define ADC_PIN 0
 #define photorezistor_ADC = 2
+
+// --Defines--------------------------------------------------------------------//
+// define pins here
 //OLED is A5 and A4
+
+// panel
+#define panel_voltage 0
+#define panel_current 1
+
+//calculation - NEEDS DEFINITION, offset, current const, high-low
+
 
 // --Variables------------------------------------------------------------------//
 
-volatile uint8_t flag_update_oled = 0;
-uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
 
 // sensor data var
+// -- Global variables -----------------------------------------------
+uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
+struct data panel_data; // USE FOR STORAGE OF MEASURED DATA
+volatile uint8_t flag_update_oled = 0;
+volatile bool flag_measure = false; 
+volatile bool flag_update_oled = false;
 
 // --Function definitions-------------------------------------------------------//
 
 // -- Photoresistor reading function -------------------------------------------//
 
 /**
- * @brief Reads the analog value from specified phtorezistor.
+ * @brief Reads the analog value from specified photoresistor.
  *
  *  This function initiates an analog-to-digital conversion on the specified
- *  photozezistor by setting the digital pin high
+ *  photoresistor by setting the digital pin high
  * 
  * @param ADC_pin The ADC pin number from which to read the analog value.
  *           
@@ -64,26 +80,19 @@ void oled_setup(void)
 {
     oled_init(OLED_DISP_ON);
     oled_clrscr();
-
     oled_charMode(DOUBLESIZE);
     oled_puts("OLED disp.");
-
     oled_charMode(NORMALSIZE);
 
-    oled_gotoxy(0, 2);
-    oled_puts("128x64, SH1106");
-
-    // oled_drawLine(x1, y1, x2, y2, color)
-    //oled_drawLine(0, 25, 120, 25, WHITE);
-
     // "The system will use a range of sensors to collect real-time data on solar radiation, energy output, and panel efficiency"
+    /*
     oled_gotoxy(0, 4);
     //oled_puts("Solar radiation [Wh/m2]:);
     oled_gotoxy(0, 6);
     //oled_puts("Energy output [J]:");
     oled_gotoxy(0, 8);
     //oled_puts("Efficiency [\%]:");
-
+    */
     // Copy buffer to display RAM
     oled_display();
 }
@@ -95,7 +104,9 @@ int main(void)
     twi_init();
     oled_setup();
     adc_init();
-    TIM1_ovf_262ms();
+    servo_init();
+    
+    TIM1_ovf_262ms(); //double check
 
     sai();
 
@@ -103,43 +114,67 @@ int main(void)
     {
         GPIO_mode_output(&DDRD, photoresistor_pins[i]);
     }
+    panel_data.voltage = 0;
+    panel_data.current = 0;
+    panel_data.power = 0;
+    panel_data.servo_angle = 0; 
+    sei();
     
     //oled placeholder loop
      while (1)
     {
-        if (flag_update_oled == 1)
-        {
-            // Clear previous radiation value on OLED
-            oled_gotoxy(0, 5);
-            oled_puts("    ");
-
-            // Display new radiation data
-            oled_gotoxy(0, 5);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
-
-            // Clear previous energy values on OLED
-            oled_gotoxy(0, 7);
-            oled_puts("    ");
-
-            // Display new energy data
-            oled_gotoxy(0, 7);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
-
-            // Clear previous efficiency values on OLED
-            oled_gotoxy(0, 9);
-            oled_puts("    ");
+        // LOOP FOR TILT, switch case or ifelif? 
         
-            // Display new efficiency data
-            oled_gotoxy(0, 9);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
-            
-            oled_display();
+        if (flag_measure) {
+            cli();
+            panel_data.voltage = analog_read(panel_voltage); //vypocitat
+            panel_data.current = analog_read(panel_current); //vypocitat
+            flag_measure = false; 
+            sei();
+        }
+        
+        if (flag_update_oled)
+        {
+            cli();
 
+            char current[4];
+            char voltage[4];
+            char servo_angle[2];
+            char power[4];
+
+            // current data disp
+            oled_gotoxy(0, 0);
+            oled_puts("Current [mA]:");
+            oled_gotoxy(0, 1);
+            sprintf(current, "%d", panel_data.current) //debug only
+            oled_puts("    ");
+            oled_gotoxy(0,1);
+            oled_puts(current);
+            
+            // voltage data disp
+            oled_gotoxy(0, 3);
+            oled_puts("Voltage mV]:");
+            oled_gotoxy(0, 4);
+            sprintf(voltage, "%d", panel_data.voltage) //debug only
+            oled_puts("    ");
+            oled_gotoxy(0,4);
+            oled_puts(voltage);
+            
+            // current data disp
+            oled_gotoxy(0, 5);
+            oled_puts("Power [mW/m2]:");
+            oled_gotoxy(0, 6);
+            sprintf(power, "%d", panel_data.power) //debug only
+            oled_puts("    ");
+            oled_gotoxy(0,6);
+            oled_puts(power);
+            
+            // servo needs to be added
+
+            oled_display();
+            sei();
             // Do not print it again and wait for the new data
-            flag_update_oled = 0;
+            flag_update_oled = false; // here or elsewhere???
         }
     }
 
