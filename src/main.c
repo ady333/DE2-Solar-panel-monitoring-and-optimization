@@ -78,7 +78,7 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
     return adc_reading;
 }
 
-int16_t photores_differnece(uint16_t photoresistor_values[2])
+int16_t photores_difference(uint16_t photoresistor_values[2])
 {
     //read values from photoresistors
     int16_t diff = 0;
@@ -90,8 +90,42 @@ int16_t photores_differnece(uint16_t photoresistor_values[2])
     return diff;
 }
 
+void pwm_init(void)
+{
+    //set fast PWM mode with non-inverted output
+    TCCR0A |= (1 << WGM00) | (1 << WGM01) | (1 << COM0A1);
+    TCCR0B |= (1 << CS00); //no prescaler
+    //set output pin
+    DDRB |= (1 << servo_PWM);
+}
 
+void servo_set_angle(uint16_t angle)
+{
+    //calculate duty cycle
+    static uint8_t duty = 90;
+    duty = (angle / 180.0) * 255;
+    OCR0A = duty;
+}
 
+void determine_servo_shift(int16_t difference)
+{
+    //determine the shift of the servo
+    if (difference > -5 && difference < 5)
+    {
+        return;
+    }
+    panel.servo_angle = panel.servo_angle + difference;
+    if (panel.servo_angle > 180)
+    {
+        panel.servo_angle = 180;
+    }
+    else if (panel.servo_angle < 0)
+    {
+        panel.servo_angle = 0;
+    }
+    servo_set_angle(panel.servo_angle);
+    return;
+}
 // oled setup placeholder
 void oled_setup(void)
 {
@@ -113,7 +147,7 @@ int main(void)
     
     TIM1_ovf_262ms(); //double check
 
-    sai();
+    sei();
 
     for (uint8_t i = 0; i < 2; i++)
     {
@@ -192,7 +226,7 @@ int main(void)
 }
 
 // -- Interrupt service routines ------------------------------------------------//
-ISR(TIMER0_COMPA_vect)
+ISR(TIMER1_COMPA_vect)
 {
     //execute whole routine once a second
     static uint8_t cnt = 0;
