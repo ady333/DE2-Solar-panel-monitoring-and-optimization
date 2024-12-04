@@ -42,7 +42,6 @@ struct panel_data { // test?
     uint16_t power;
     uint8_t servo_angle;
 };
-volatile uint8_t flag_update_oled = 0;
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
 
