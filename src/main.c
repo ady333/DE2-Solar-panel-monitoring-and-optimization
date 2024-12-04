@@ -36,7 +36,12 @@ Description place holder
 // sensor data var
 // -- Global variables -----------------------------------------------
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
-struct data panel_data; // USE FOR STORAGE OF MEASURED DATA
+struct panel_data { // test?
+    uint16_t voltage;
+    uint16_t current;
+    uint16_t power;
+    uint8_t servo_angle;
+};
 volatile uint8_t flag_update_oled = 0;
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
