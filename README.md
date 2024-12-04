@@ -1,7 +1,7 @@
 # DE2-Solar-panel-monitoring-and-optimization
 
 ## Team members
-- **Adam** (responsible for shunt)
+- **Adam** (responsible for solar panel data collection)
 - **Radek** (responsible for voltage divider)
 - **Marek** (responsible for OLED, README, schematic)
 
