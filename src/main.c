@@ -10,11 +10,18 @@ Description place holder
 #include <oled.h>
 #include <stdio.h>          
 #include <adc.h>
+#include <stdbool.h>
+#include <servo.h> // NUTNE VYTVORIT
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
-#define ADC_PIN 0
 //OLED is A5 and A4
+
+
+// panel
+#define panel_voltage 0
+#define panel_current 1
+
 
 // --Variables------------------------------------------------------------------//
 // -- Global variables -----------------------------------------------
