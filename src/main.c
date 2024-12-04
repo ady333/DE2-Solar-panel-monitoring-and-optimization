@@ -96,8 +96,8 @@ int main(void)
     {
         if (flag_measure) {
             cli();
-            panel_data.voltage = analog_read();
-            panel_data.current = analog_read()
+            panel_data.voltage = analog_read(panel_voltage); //vypocitat
+            panel_data.current = analog_read(panel_current); //vypocitat
             flag_measure = false; 
             sei();
         }
