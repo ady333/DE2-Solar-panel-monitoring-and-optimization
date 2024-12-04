@@ -17,10 +17,11 @@ Description place holder
 // define pins here
 //OLED is A5 and A4
 
-
 // panel
 #define panel_voltage 0
 #define panel_current 1
+
+//calculation - NEEDS DEFINITION, offset, current const, high-low
 
 
 // --Variables------------------------------------------------------------------//
@@ -101,6 +102,8 @@ int main(void)
     //oled placeholder loop
      while (1)
     {
+        // LOOP FOR TILT, switch case or ifelif? 
+        
         if (flag_measure) {
             cli();
             panel_data.voltage = analog_read(panel_voltage); //vypocitat
@@ -115,40 +118,42 @@ int main(void)
 
             char current[4];
             char voltage[4];
-            char vertical_angle[2];
+            char servo_angle[2];
             char power[4];
 
-            // Clear previous radiation value on OLED
-            oled_gotoxy(0, 5);
+            // current data disp
+            oled_gotoxy(0, 0);
+            oled_puts("Current [mA]:");
+            oled_gotoxy(0, 1);
+            sprintf(current, "%d", panel_data.current) //debug only
             oled_puts("    ");
-
-            // Display new radiation data
-            oled_gotoxy(0, 5);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
-
-            // Clear previous energy values on OLED
-            oled_gotoxy(0, 7);
-            oled_puts("    ");
-
-            // Display new energy data
-            oled_gotoxy(0, 7);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
-
-            // Clear previous efficiency values on OLED
-            oled_gotoxy(0, 9);
-            oled_puts("    ");
-        
-            // Display new efficiency data
-            oled_gotoxy(0, 9);
-            //sprintf(oled_msg, "%u.%u", var?, var?);
-            //oled_puts(oled_msg);
+            oled_gotoxy(0,1);
+            oled_puts(current);
             
-            oled_display();
+            // voltage data disp
+            oled_gotoxy(0, 3);
+            oled_puts("Voltage mV]:");
+            oled_gotoxy(0, 4);
+            sprintf(voltage, "%d", panel_data.voltage) //debug only
+            oled_puts("    ");
+            oled_gotoxy(0,4);
+            oled_puts(voltage);
+            
+            // current data disp
+            oled_gotoxy(0, 5);
+            oled_puts("Power [mW/m2]:");
+            oled_gotoxy(0, 6);
+            sprintf(power, "%d", panel_data.power) //debug only
+            oled_puts("    ");
+            oled_gotoxy(0,6);
+            oled_puts(power);
+            
+            // servo needs to be added
 
+            oled_display();
+            sei();
             // Do not print it again and wait for the new data
-            flag_update_oled = 0;
+            flag_update_oled = false; // here or elsewhere???
         }
     }
 
