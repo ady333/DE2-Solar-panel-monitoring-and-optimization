@@ -37,6 +37,7 @@ Description place holder
 // sensor data var
 // -- Global variables -----------------------------------------------
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
+
 struct panel_data { // test?
     int16_t voltage;
     int16_t current;
@@ -85,19 +86,7 @@ void oled_setup(void)
 {
     oled_init(OLED_DISP_ON);
     oled_clrscr();
-    oled_charMode(DOUBLESIZE);
-    oled_puts("OLED disp.");
-    oled_charMode(NORMALSIZE);
 
-    // "The system will use a range of sensors to collect real-time data on solar radiation, energy output, and panel efficiency"
-    /*
-    oled_gotoxy(0, 4);
-    //oled_puts("Solar radiation [Wh/m2]:);
-    oled_gotoxy(0, 6);
-    //oled_puts("Energy output [J]:");
-    oled_gotoxy(0, 8);
-    //oled_puts("Efficiency [\%]:");
-    */
     // Copy buffer to display RAM
     oled_display();
 }
@@ -119,6 +108,7 @@ int main(void)
     {
         GPIO_mode_output(&DDRD, photoresistor_pins[i]);
     }
+    
     panel_data.voltage = 0;
     panel_data.current = 0;
     panel_data.power = 0;
