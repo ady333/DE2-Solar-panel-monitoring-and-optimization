@@ -16,9 +16,9 @@
   ![{C41E8F50-5940-4CA5-B72A-D16025B870EA}](https://github.com/user-attachments/assets/7a776db0-eff5-42f8-8688-06eed0c3cecf)
 
 - ~[Boost-buck step up/down module](https://dratek.cz/arduino/1752-boost-buck-step-up-down-modul-solarniho-napajeni-nastavitelny-dc-dc-xl6009.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagNtU640OGo9hLfmzhv-45s0pYe-8q6oK4Jup-vhbJJ3ur6-9jN-ndhoCm80QAvD_BwE)~
+  
 - [Proudový senzor 5A ACS712](https://dratek.cz/arduino/1072-5a-proudovy-senzor-acs712.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagO3sPKNKcjVXXOFWqBSw3VnbfjmYk3G59McyNn3DMNanhDyCYVnZrhoCHegQAvD_BwE)
   ![image](https://github.com/user-attachments/assets/09541cd8-586e-4af4-9a72-d8704a36a381)
-
 - [OLED display](https://dratek.cz/arduino/3181-iic-i2c-oled-1-3-displej-128x64-bily.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagGTJY9aaMqUh7axe7fEJV2dWkBF2WsShhmveTVssdStMTSZZZww1mhoCKxMQAvD_BwE) 
 
 Describe your implementation and include block or circuit diagram(s).
