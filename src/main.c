@@ -18,7 +18,7 @@ Description place holder
 // --Defines--------------------------------------------------------------------//
 // define pins here
 #define ADC_PIN 0
-#define photorezistor_ADC = 2
+#define photorezistor_ADC 2
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
