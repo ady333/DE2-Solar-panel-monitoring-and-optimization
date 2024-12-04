@@ -25,8 +25,8 @@ Description place holder
 //OLED is A5 and A4
 
 // panel
-#define panel_voltage 0
-#define panel_current 1
+#define PANEL_VOLTAGE_ADC 0
+#define PANEL_CURRENT_ADC 1
 
 //calculation - NEEDS DEFINITION, offset, current const, high-low
 
