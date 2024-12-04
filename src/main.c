@@ -17,9 +17,8 @@ Description place holder
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
-#define ADC_PIN 0
 #define photorezistor_ADC 2
-
+#define servo_PWM PB2
 // --Defines--------------------------------------------------------------------//
 // define pins here
 //OLED is A5 and A4
@@ -79,6 +78,17 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
     return adc_reading;
 }
 
+int16_t photores_differnece(uint16_t photoresistor_values[2])
+{
+    //read values from photoresistors
+    int16_t diff = 0;
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        photoresistor_values[i] = read_photoresistor(photorezistor_ADC, photoresistor_pins[i]);
+    }
+    diff = (photoresistor_values[0] - photoresistor_values[1]) * 180 / 1023;
+    return diff;
+}
 
 
 
@@ -109,6 +119,9 @@ int main(void)
     {
         GPIO_mode_output(&DDRD, photoresistor_pins[i]);
     }
+
+    GPIO_mode_output(&DDRB, servo_PWM);
+
     
     // Initialize panel data
     panel.voltage = 0;
@@ -187,9 +200,7 @@ ISR(TIMER0_COMPA_vect)
     {
 
         //read value from ADC
-        static uint16_t solar_voltage;
-        solar_voltage = adc_read(ADC_PIN);
-            //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
+        //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
 
 
         //calculate power
