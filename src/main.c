@@ -13,6 +13,7 @@ Description place holder
 #include <gpio.h>
 #include <stdbool.h>
 #include <servo.h>
+#include <stdint.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
@@ -37,10 +38,10 @@ Description place holder
 // -- Global variables -----------------------------------------------
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
 struct panel_data { // test?
-    uint16_t voltage;
-    uint16_t current;
-    uint16_t power;
-    uint8_t servo_angle;
+    int16_t voltage;
+    int16_t current;
+    int16_t power;
+    int16_t servo_angle;
 };
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
