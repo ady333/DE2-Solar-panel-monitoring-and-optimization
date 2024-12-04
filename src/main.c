@@ -150,7 +150,7 @@ int main(void)
             oled_gotoxy(0, 0);
             oled_puts("Current [mA]:");
             oled_gotoxy(0, 1);
-            sprintf(current, "%d", panel_data.current) //debug only
+            sprintf(current, "%d", panel_data.current); //debug only
             oled_puts("    ");
             oled_gotoxy(0,1);
             oled_puts(current);
@@ -159,7 +159,7 @@ int main(void)
             oled_gotoxy(0, 3);
             oled_puts("Voltage mV]:");
             oled_gotoxy(0, 4);
-            sprintf(voltage, "%d", panel_data.voltage) //debug only
+            sprintf(voltage, "%d", panel_data.voltage); //debug only
             oled_puts("    ");
             oled_gotoxy(0,4);
             oled_puts(voltage);
@@ -168,7 +168,7 @@ int main(void)
             oled_gotoxy(0, 5);
             oled_puts("Power [mW/m2]:");
             oled_gotoxy(0, 6);
-            sprintf(power, "%d", panel_data.power) //debug only
+            sprintf(power, "%d", panel_data.power); //debug only
             oled_puts("    ");
             oled_gotoxy(0,6);
             oled_puts(power);
