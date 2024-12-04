@@ -20,8 +20,7 @@ Description place holder
 // -- Global variables -----------------------------------------------
 struct data panel_data // USE FOR STORAGE OF MEASURED DATA
 volatile uint8_t flag_update_oled = 0;
-volatile bool angle_in = false; // rename
-volatile bool panel_in = false; // rename
+volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
 
 // --Function definitions-------------------------------------------------------//
@@ -96,9 +95,11 @@ int main(void)
      while (1)
     {
         if (flag_measure) {
-            
-
-            
+            cli();
+            panel_data.voltage = analog_read();
+            panel_data.current = analog_read()
+            flag_measure = false; 
+            sei();
         }
         
         if (flag_update_oled)
