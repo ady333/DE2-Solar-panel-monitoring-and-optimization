@@ -18,18 +18,21 @@ Description place holder
 
 // --Variables------------------------------------------------------------------//
 // -- Global variables -----------------------------------------------
+struct data panel_data // USE FOR STORAGE OF MEASURED DATA
 volatile uint8_t flag_update_oled = 0;
-// sensor data var
+volatile bool angle_in = false; // rename
+volatile bool panel_in = false; // rename
+volatile bool flag_update_oled = false;
 
 // --Function definitions-------------------------------------------------------//
 
 // -- Photoresistor reading function -------------------------------------------//
 
 /**
- * @brief Reads the analog value from specified phtorezistor.
+ * @brief Reads the analog value from specified photoresistor.
  *
  *  This function initiates an analog-to-digital conversion on the specified
- *  photozezistor by setting the digital pin high
+ *  photoresistor by setting the digital pin high
  * 
  * @param ADC_pin The ADC pin number from which to read the analog value.
  *           
@@ -55,26 +58,19 @@ void oled_setup(void)
 {
     oled_init(OLED_DISP_ON);
     oled_clrscr();
-
     oled_charMode(DOUBLESIZE);
     oled_puts("OLED disp.");
-
     oled_charMode(NORMALSIZE);
 
-    oled_gotoxy(0, 2);
-    oled_puts("128x64, SH1106");
-
-    // oled_drawLine(x1, y1, x2, y2, color)
-    //oled_drawLine(0, 25, 120, 25, WHITE);
-
     // "The system will use a range of sensors to collect real-time data on solar radiation, energy output, and panel efficiency"
+    /*
     oled_gotoxy(0, 4);
     //oled_puts("Solar radiation [Wh/m2]:);
     oled_gotoxy(0, 6);
     //oled_puts("Energy output [J]:");
     oled_gotoxy(0, 8);
     //oled_puts("Efficiency [\%]:");
-
+    */
     // Copy buffer to display RAM
     oled_display();
 }
@@ -86,15 +82,34 @@ int main(void)
     twi_init();
     oled_setup();
     adc_init();
-    TIM1_ovf_262ms();
+    servo_init();
+    
+    TIM1_ovf_262ms(); //double check
 
-    sai();
+    panel_data.voltage = 0;
+    panel_data.current = 0;
+    panel_data.power = 0;
+    panel_data.servo_angle = 0; 
+    sei();
     
     //oled placeholder loop
      while (1)
     {
-        if (flag_update_oled == 1)
+        if (flag_measure) {
+            
+
+            
+        }
+        
+        if (flag_update_oled)
         {
+            cli();
+
+            char current[4];
+            char voltage[4];
+            char vertical_angle[2];
+            char power[4];
+
             // Clear previous radiation value on OLED
             oled_gotoxy(0, 5);
             oled_puts("    ");
