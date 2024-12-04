@@ -114,7 +114,7 @@ int main(void)
 
     sai();
 
-    for (uint8_t i = 0; i < 4; i++)
+    for (uint8_t i = 0; i < 2; i++)
     {
         GPIO_mode_output(&DDRD, photoresistor_pins[i]);
     }
