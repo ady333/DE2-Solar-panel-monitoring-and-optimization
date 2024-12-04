@@ -38,13 +38,13 @@ Description place holder
 // -- Global variables -----------------------------------------------
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
 
-struct panel_data { // test?
+struct PanelData {
     int16_t voltage;
     int16_t current;
     int16_t power;
     int16_t servo_angle;
 };
-struct panel_data panel_data;
+struct PanelData panel;
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
 
@@ -110,67 +110,69 @@ int main(void)
         GPIO_mode_output(&DDRD, photoresistor_pins[i]);
     }
     
-    panel_data.voltage = 0;
-    panel_data.current = 0;
-    panel_data.power = 0;
-    panel_data.servo_angle = 0; 
-    sei();
+    // Initialize panel data
+    panel.voltage = 0;
+    panel.current = 0;
+    panel.power = 0;
+    panel.servo_angle = 0; 
     
-    //oled placeholder loop
-     while (1)
+    // Main loop
+    while (1)
     {
-        // LOOP FOR TILT, switch case or ifelif? 
-        
-        if (flag_measure) {
-            cli();
-            panel_data.voltage = analog_read(panel_voltage); //vypocitat
-            panel_data.current = analog_read(panel_current); //vypocitat
+        if (flag_measure)
+        {
+            // Read and calculate panel voltage
+            uint16_t adc_value = adc_read(PANEL_VOLTAGE_ADC);
+            panel.voltage = (adc_value / 1023.0) * 5000; // Convert to millivolts
+
+            // Read and calculate panel current
+            adc_value = adc_read(PANEL_CURRENT_ADC);
+            panel.current = (adc_value / 1023.0) * 5000; // Convert to milliamps
+
+            // Calculate power (P = V * I)
+            panel.power = (panel.voltage * panel.current) / 1000; // Convert to milliwatts
+
             flag_measure = false; 
-            sei();
         }
         
         if (flag_update_oled)
         {
-            cli();
+            // Update OLED display
+            char current_str[8];
+            char voltage_str[8];
+            char power_str[8];
 
-            char current[4];
-            char voltage[4];
-            char servo_angle[2];
-            char power[4];
-
-            // current data disp
+            // Current data display
             oled_gotoxy(0, 0);
             oled_puts("Current [mA]:");
+            sprintf(current_str, "%d", panel.current);
             oled_gotoxy(0, 1);
-            sprintf(current, "%d", panel_data.current); //debug only
-            oled_puts("    ");
-            oled_gotoxy(0,1);
-            oled_puts(current);
+            oled_puts("        ");  // Clear previous value
+            oled_gotoxy(0, 1);
+            oled_puts(current_str);
             
-            // voltage data disp
+            // Voltage data display
+            oled_gotoxy(0, 2);
+            oled_puts("Voltage [mV]:");
+            sprintf(voltage_str, "%d", panel.voltage);
             oled_gotoxy(0, 3);
-            oled_puts("Voltage mV]:");
+            oled_puts("        ");  // Clear previous value
+            oled_gotoxy(0, 3);
+            oled_puts(voltage_str);
+            
+            // Power data display
             oled_gotoxy(0, 4);
-            sprintf(voltage, "%d", panel_data.voltage); //debug only
-            oled_puts("    ");
-            oled_gotoxy(0,4);
-            oled_puts(voltage);
-            
-            // current data disp
+            oled_puts("Power [mW]:");
+            sprintf(power_str, "%d", panel.power);
             oled_gotoxy(0, 5);
-            oled_puts("Power [mW/m2]:");
-            oled_gotoxy(0, 6);
-            sprintf(power, "%d", panel_data.power); //debug only
-            oled_puts("    ");
-            oled_gotoxy(0,6);
-            oled_puts(power);
-            
-            // servo needs to be added
+            oled_puts("        ");  // Clear previous value
+            oled_gotoxy(0, 5);
+            oled_puts(power_str);
 
+            // Update the OLED display
             oled_display();
-            sei();
-            // Do not print it again and wait for the new data
-            flag_update_oled = false; // here or elsewhere???
+
+            flag_update_oled = false;
         }
     }
 
