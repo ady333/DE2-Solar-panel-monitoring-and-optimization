@@ -20,6 +20,7 @@
 - [Proudový senzor 5A ACS712](https://dratek.cz/arduino/1072-5a-proudovy-senzor-acs712.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagO3sPKNKcjVXXOFWqBSw3VnbfjmYk3G59McyNn3DMNanhDyCYVnZrhoCHegQAvD_BwE)
   ![image](https://github.com/user-attachments/assets/09541cd8-586e-4af4-9a72-d8704a36a381)
 - [OLED display](https://dratek.cz/arduino/3181-iic-i2c-oled-1-3-displej-128x64-bily.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagGTJY9aaMqUh7axe7fEJV2dWkBF2WsShhmveTVssdStMTSZZZww1mhoCKxMQAvD_BwE) 
+![image](https://github.com/user-attachments/assets/2608979c-5e9e-4a23-b03d-e2a30e73dab5)
 
 Describe your implementation and include block or circuit diagram(s).
 - [simple schematic](https://docs.google.com/presentation/d/1u240EyscOu1TMV3R26A9XNAYTfE4c-NHmTZzbbc4IIg/edit?usp=sharing)
