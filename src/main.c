@@ -121,15 +121,13 @@ int main(void)
     {
         if (flag_measure)
         {
-            // Read and calculate panel voltage
+            // VALUES ONLY PLACEHOLDER. Adame prosím zkontroluj, případně urči konstanty
             uint16_t adc_value = adc_read(PANEL_VOLTAGE_ADC);
             panel.voltage = (adc_value / 1023.0) * 5000; // Convert to millivolts
 
-            // Read and calculate panel current
             adc_value = adc_read(PANEL_CURRENT_ADC);
             panel.current = (adc_value / 1023.0) * 5000; // Convert to milliamps
 
-            // Calculate power (P = V * I)
             panel.power = (panel.voltage * panel.current) / 1000; // Convert to milliwatts
 
             flag_measure = false; 
