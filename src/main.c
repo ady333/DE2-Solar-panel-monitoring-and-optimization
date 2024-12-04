@@ -10,15 +10,19 @@ Description place holder
 #include <oled.h>
 #include <stdio.h>          
 #include <adc.h>
+#include <gpio.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
 #define ADC_PIN 0
+#define photorezistor_ADC = 2
 //OLED is A5 and A4
 
 // --Variables------------------------------------------------------------------//
-// -- Global variables -----------------------------------------------
+
 volatile uint8_t flag_update_oled = 0;
+uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
+
 // sensor data var
 
 // --Function definitions-------------------------------------------------------//
@@ -43,11 +47,16 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
     static uint16_t adc_reading;
 
     //gpio high digital pin
+    GPIO_write_high(&PORTD, digital_pin);
     adc_reading = adc_read(ADC_pin);
+    GPIO_write_low(&PORTD, digital_pin);
+
     //gpio low digital pin
 
     return adc_reading;
 }
+
+
 
 
 // oled setup placeholder
@@ -89,6 +98,11 @@ int main(void)
     TIM1_ovf_262ms();
 
     sai();
+
+    for (uint8_t i = 0; i < 4; i++)
+    {
+        GPIO_mode_output(&DDRD, photoresistor_pins[i]);
+    }
     
     //oled placeholder loop
      while (1)
@@ -146,8 +160,6 @@ ISR(TIMER0_COMPA_vect)
         solar_voltage = adc_read(ADC_PIN);
             //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
 
-        //read value from I2C shunt
-        //TODO:
 
         //calculate power
         //TODO:
