@@ -17,6 +17,12 @@
   ![image](https://github.com/user-attachments/assets/09541cd8-586e-4af4-9a72-d8704a36a381)
 - [OLED display](https://dratek.cz/arduino/3181-iic-i2c-oled-1-3-displej-128x64-bily.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagGTJY9aaMqUh7axe7fEJV2dWkBF2WsShhmveTVssdStMTSZZZww1mhoCKxMQAvD_BwE) 
 ![image](https://github.com/user-attachments/assets/2608979c-5e9e-4a23-b03d-e2a30e73dab5)
+- relay
+  ![image](https://github.com/user-attachments/assets/e5386381-58be-47d9-8d3b-961b169ccd32)
+- resistors
+- mikro servomotor
+  ![image](https://github.com/user-attachments/assets/cb86b96b-42eb-4691-b1ce-7b8c686a4beb)
+- 
 
 Describe your implementation and include block or circuit diagram(s).
 - ~~[simple schematic](https://docs.google.com/presentation/d/1u240EyscOu1TMV3R26A9XNAYTfE4c-NHmTZzbbc4IIg/edit?usp=sharing)~~ (deprecated)
