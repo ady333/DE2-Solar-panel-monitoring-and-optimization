@@ -254,25 +254,45 @@ ISR(TIMER1_COMPA_vect)
 {
     //execute whole routine once a second
     static uint8_t cnt = 0;
-    if (cnt == 3)
-    {
+    if(cnt == 63)
 
-        //read value from ADC
-        //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
+      {
 
+        uint16_t I_final_panel = (I_sum/(64.0*1023.0)*U_supply)*1000000/module;
+
+        I_radiation_final = 1000000*(I_final_panel+I_offset)/I0;
+
+ 
 
         //calculate power
+
         //TODO:
+
+        power_of_panel = R_load * power_final_panel*I_final_panel;
+
+ 
 
         //calculate energy
+
         //TODO:
+
+        energy_panel = power_of_panel * 256;
+
+ 
 
         //calculate efficiency
+
         //TODO:
 
+        efficiency = power_of_panel/(R_load * I_radiation_final*I_radiation_final)*100;
+
+ 
+
         //update OLED
+
         flag_update_oled = 1;
-    }
+
+        }
     cnt++;
 }
 
