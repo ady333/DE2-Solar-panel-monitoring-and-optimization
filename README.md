@@ -55,6 +55,8 @@ The current provided by the photovoltaic panel is measured using the ACS721-5A c
 This value is later used in subsequent calculations.
 
 -![image](https://github.com/user-attachments/assets/41f0fb2b-c64f-4230-a750-7cfafa775cfd)
+-![image](https://github.com/user-attachments/assets/911714fc-9677-45b7-876a-666120f85737)
+
 
 
 ## Results
