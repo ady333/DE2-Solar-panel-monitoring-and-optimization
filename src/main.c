@@ -287,13 +287,14 @@ ISR(TIMER1_COMPA_vect)
       {
         //measure 
 
-        flag_measure = false;
+        flag_measure = true;
             
-        //update OLED
-
-        flag_update_oled = true;
-
         }
+
+    if (cnt == 200)
+    {
+        flag_update_oled = true;
+    }
     if(cnt == 250)
     {
         static uint16_t photoresistor_values[2];
