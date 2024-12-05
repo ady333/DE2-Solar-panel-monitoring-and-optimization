@@ -56,4 +56,5 @@ Describe how to use the application. Add photos or videos of your application.
 - [avrfreaks](https://www.avrfreaks.net/s/topic/a5C3l000000UaPVEA0/t153755)
 - [electronic wings](https://www.electronicwings.com/avr-atmega/atmega1632-pwm)
 - Copilot for code commentary
+- [Circuito - Arduino Uno schematic](https://www.circuito.io/blog/arduino-uno-pinout/)
   
