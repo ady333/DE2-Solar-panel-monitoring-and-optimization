@@ -17,8 +17,7 @@ void adc_init(void)
 uint16_t adc_read(uint8_t ADC_pin)
 {
     // Set ADC_pin
-    ADC_pin &= 0x07; // AND operation to limit the range of ADC_pin to 0-5
-    if (ADC_pin > 5)
+    if (ADC_pin > 5 || ADC_pin < 0)
     {
         return 1;
     }
