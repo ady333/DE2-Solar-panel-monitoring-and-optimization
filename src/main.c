@@ -12,7 +12,6 @@ Description place holder
 #include <adc.h>
 #include <gpio.h>
 #include <stdbool.h>
-#include <servo.h>
 #include <stdint.h>
 
 // --Defines--------------------------------------------------------------------//
@@ -49,7 +48,6 @@ volatile bool flag_update_oled = false;
 
 // --Function definitions-------------------------------------------------------//
 
-// -- Photoresistor reading function -------------------------------------------//
 
 /**
  * @brief Reads the analog value from specified photoresistor.
@@ -78,6 +76,12 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
     return adc_reading;
 }
 
+/**
+ * @brief 
+ * 
+ * @param photoresistor_values 
+ * @return int16_t 
+ */
 int16_t photores_difference(uint16_t photoresistor_values[2])
 {
     //read values from photoresistors
@@ -90,6 +94,10 @@ int16_t photores_difference(uint16_t photoresistor_values[2])
     return diff;
 }
 
+/**
+ * @brief 
+ * 
+ */
 void pwm_init(void)
 {
     //set fast PWM mode with non-inverted output
@@ -99,6 +107,11 @@ void pwm_init(void)
     DDRB |= (1 << servo_PWM);
 }
 
+/**
+ * @brief 
+ * 
+ * @param angle 
+ */
 void servo_set_angle(uint16_t angle)
 {
     //calculate duty cycle
@@ -233,10 +246,6 @@ ISR(TIMER1_COMPA_vect)
     if (cnt == 3)
     {
 
-        //read value from ADC
-        //TODO: Convert ADC value to voltage base on the refference voltage and resolution of the ADC
-
-
         //calculate power
         //TODO:
 
@@ -251,5 +260,4 @@ ISR(TIMER1_COMPA_vect)
     }
     cnt++;
 }
-
 // -- end of file --//

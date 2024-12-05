@@ -8,8 +8,6 @@
 
 void adc_init(void)
 {
-    //TODO: determine which what setting would be best for the application
-
     ADMUX = 0x40; //Reference voltage is AVCC and 10-bit resolution
     ADCSRA |= 1<<ADEN; // Enable ADC
     ADCSRA |= 1<<ADPS2 | 1<<ADPS1 | 1<<ADPS0; // Set prescaler to 128
