@@ -60,6 +60,7 @@ volatile uint16_t power_of_panel = 0;
 // sensor data var
 // -- Global variables -----------------------------------------------
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
+uint16_t photoresistor_values[2] = {0, 0}; // analog photoresistor values
 
 struct PanelData {
     int16_t efficiency;
@@ -70,6 +71,7 @@ struct PanelData {
 struct PanelData panel;
 volatile bool flag_measure = false; 
 volatile bool flag_update_oled = false;
+volatile bool flag_servo = false;
 
 // --Function definitions-------------------------------------------------------//
 
@@ -273,6 +275,15 @@ int main(void)
 
             flag_update_oled = false;
         }
+        if(flag_servo)
+        {
+            photoresistor_values[0] = read_photoresistor(photorezistor_ADC, photoresistor_pins[0]);
+            photoresistor_values[1] = read_photoresistor(photorezistor_ADC, photoresistor_pins[1]);
+            photores_difference(photoresistor_values);
+            determine_servo_shift(photores_difference(photoresistor_values));
+            uart_puts("setting servo angle\r\n");
+            flag_servo = false;
+        }
     }
 
     
@@ -299,18 +310,9 @@ ISR(TIMER1_OVF_vect)
 
     if(cnt == 4) // 1 second - set servo angle
     {
-        static uint16_t photoresistor_values[2];
-        photoresistor_values[0] = read_photoresistor(photorezistor_ADC, photoresistor_pins[0]);
-        photoresistor_values[1] = read_photoresistor(photorezistor_ADC, photoresistor_pins[1]);
-        photores_difference(photoresistor_values);
-        determine_servo_shift(photores_difference(photoresistor_values));
-        uart_puts("setting servo angle\r\n");
-    }
-    if (cnt == 4)
-    {
+        flag_servo = true;
         cnt = 0;
     }
     cnt++;
-
 }
 // -- end of file --//
