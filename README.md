@@ -21,8 +21,7 @@ Hardware and software solution for measuiring important data of a solar panel an
   
 
 ## Circuit schematic
-![{785F25B3-A056-428A-B726-6136B029C9C0}](https://github.com/user-attachments/assets/04647a2a-fdfe-4407-b6ac-54b970dfdbc8)
-
+![Fig.1 Circuit schemtic](https://github.com/user-attachments/assets/8b63eb43-989a-42c1-b65c-ae2e348858ca)
 
 ### Libraries
 - OLED.h
@@ -42,8 +41,9 @@ The photoresistors are connected in a voltage divider configuration according to
 The current provided by the photovoltaic panel is measured using the ACS721-5A circuit. The circuit was originally designed for MPPT (Maximum Power Point Tracking) using the short-circuit current method, where the maximum is determined based on the short-circuit current provided by the solar panel. This current was initially supposed to be measured using a switching relay; however, due to time constraints, this was not implemented. Instead, this value was determined to be slightly over 3 mA under typical overcast winter conditions.
 This value is later used in subsequent calculations.
 
--![image](https://github.com/user-attachments/assets/41f0fb2b-c64f-4230-a750-7cfafa775cfd)
--![image](https://github.com/user-attachments/assets/911714fc-9677-45b7-876a-666120f85737)
+![Fig.2 Image of final project](https://github.com/user-attachments/assets/41f0fb2b-c64f-4230-a750-7cfafa775cfd)
+
+![Fig.3 Circuit close-up](https://github.com/user-attachments/assets/911714fc-9677-45b7-876a-666120f85737)
 
 
 
