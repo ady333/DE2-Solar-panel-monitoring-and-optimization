@@ -14,6 +14,7 @@ Description place holder
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <uart.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
@@ -179,9 +180,10 @@ int main(void)
     twi_init();
     oled_setup();
     adc_init();
-    servo_init();
+    pwm_init();
     
-    TIM1_ovf_4ms(); //double check
+    TIM1_ovf_262ms(); //double check
+    TIM1_ovf_enable();
 
     sei();
 
@@ -192,13 +194,14 @@ int main(void)
 
     GPIO_mode_output(&DDRB, servo_PWM);
 
-    
     // Initialize panel data
     panel.efficiency = 0;
     panel.current = 0;
     panel.power = 0;
     panel.servo_angle = 0; 
     
+    uart_init(UART_BAUD_SELECT(9600, F_CPU));
+    uart_puts("initilization complete\r\n"); //initilization    
     // Main loop
     while (1)
     {
@@ -277,34 +280,36 @@ int main(void)
 }
 
 // -- Interrupt service routines ------------------------------------------------//
-ISR(TIMER1_COMPA_vect)
+ISR(TIMER1_OVF_vect)
 {
     //execute whole routine once a second
     static uint8_t cnt = 0;
 
-    if(cnt == 63)
-
-      {
-        //measure 
-
+    if(cnt == 1) // 0.25 seconds - measure
+    {
         flag_measure = true;
-            
-        }
+        uart_puts("measuring\r\n");
+    }
 
-    if (cnt == 200)
+    if (cnt == 2) // 0.8 seconds - update oled
     {
         flag_update_oled = true;
+        uart_puts("updating oled\r\n");
     }
-    if(cnt == 250)
+
+    if(cnt == 4) // 1 second - set servo angle
     {
         static uint16_t photoresistor_values[2];
         photoresistor_values[0] = read_photoresistor(photorezistor_ADC, photoresistor_pins[0]);
         photoresistor_values[1] = read_photoresistor(photorezistor_ADC, photoresistor_pins[1]);
         photores_difference(photoresistor_values);
         determine_servo_shift(photores_difference(photoresistor_values));
+        uart_puts("setting servo angle\r\n");
+    }
+    if (cnt == 4)
+    {
         cnt = 0;
     }
-
     cnt++;
 
 }
