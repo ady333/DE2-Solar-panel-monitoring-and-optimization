@@ -3,7 +3,7 @@
 ## Team members
 - **Adam** (responsible for solar panel data collection)
 - **Radek** (responsible for ADC, servo, photoresistor)
-- **Marek** (responsible for OLED, README, )
+- **Marek** (responsible for OLED, README, main.c)
 
 ## Hardware description
 
