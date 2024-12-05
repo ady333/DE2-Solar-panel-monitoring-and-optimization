@@ -3,7 +3,7 @@
 ## Team members
 - **Adam** (responsible for solar panel data collection)
 - **Radek** (responsible for ADC, servo, photoresistor)
-- **Marek** (responsible for OLED, README, main.c)
+- **Marek** (responsible for OLED, README, main loop, schematic)
 
 ## Description
 Hardware and software solution for measuiring important data of a solar panel and capable of self rotation calibration based on photoresistor readings.
