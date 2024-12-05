@@ -90,12 +90,10 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
 {
     static uint16_t adc_reading;
 
-    //gpio high digital pin
     GPIO_write_high(&PORTD, digital_pin);
     adc_reading = adc_read(ADC_pin);
     GPIO_write_low(&PORTD, digital_pin);
 
-    //gpio low digital pin
 
     return adc_reading;
 }
