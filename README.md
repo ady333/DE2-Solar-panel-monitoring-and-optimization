@@ -18,7 +18,7 @@
 ![image](https://github.com/user-attachments/assets/2608979c-5e9e-4a23-b03d-e2a30e73dab5)
 
 Describe your implementation and include block or circuit diagram(s).
-- [simple schematic](https://docs.google.com/presentation/d/1u240EyscOu1TMV3R26A9XNAYTfE4c-NHmTZzbbc4IIg/edit?usp=sharing)
+- ~~[simple schematic](https://docs.google.com/presentation/d/1u240EyscOu1TMV3R26A9XNAYTfE4c-NHmTZzbbc4IIg/edit?usp=sharing)~~ (deprecated)
 - add full detailed schematic
  ![1000010447](https://github.com/user-attachments/assets/ada05d3a-31f8-4791-bea2-af8901ae8706)
 ![1000010446](https://github.com/user-attachments/assets/2549ac60-b7af-41c0-96e0-6917e07c255e)
@@ -31,6 +31,9 @@ Describe your implementation and include block or circuit diagram(s).
 ### Libraries
 - OLED.h
 - adc.h
+- servo.h
+- gpio.h
+- twi.h
 ### Functions
 - solar panel data collection?
 - ADC
@@ -43,7 +46,7 @@ Describe how to use the application. Add photos or videos of your application.
 - [Simple Arduino Solar Radiation Meter](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
 - [CHat GPT](https://openai.com/)
 - [Solarduino](https://solarduino.com/arduino-code-tips/)
-- https://www.avrfreaks.net/s/topic/a5C3l000000UaPVEA0/t153755
-- https://www.electronicwings.com/avr-atmega/atmega1632-pwm
+- [avrfreaks](https://www.avrfreaks.net/s/topic/a5C3l000000UaPVEA0/t153755)
+- [electronic wings](https://www.electronicwings.com/avr-atmega/atmega1632-pwm)
 - Copilot for code commentary
   
