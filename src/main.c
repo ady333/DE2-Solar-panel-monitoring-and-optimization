@@ -280,11 +280,9 @@ int main(void)
 ISR(TIMER1_COMPA_vect)
 {
     //execute whole routine once a second
-    static uint8_t cnt_mes = 0;
-    static uint8_t cnt_oled = 0;
-    static uint8_t cnt_servo = 0;
+    static uint8_t cnt = 0;
 
-    if(cnt_mes == 63)
+    if(cnt == 63)
 
       {
         //measure 
@@ -296,6 +294,17 @@ ISR(TIMER1_COMPA_vect)
         flag_update_oled = true;
 
         }
-    cnt_mes++;
+    if(cnt == 250)
+    {
+        static uint16_t photoresistor_values[2];
+        photoresistor_values[0] = read_photoresistor(photorezistor_ADC, photoresistor_pins[0]);
+        photoresistor_values[1] = read_photoresistor(photorezistor_ADC, photoresistor_pins[1]);
+        photores_difference(photoresistor_values);
+        determine_servo_shift(photores_difference(photoresistor_values));
+        cnt = 0;
+    }
+
+    cnt++;
+
 }
 // -- end of file --//
