@@ -211,16 +211,19 @@ int main(void)
             I_radiation_final = 1000000*(I_final_panel+I_offset)/I0;
     
             panel.current = I_radiation_final;
-    
+            
             //calculate power
     
             power_of_panel = R_load * power_final_panel*I_final_panel;
+            panel.power = power_of_panel;
             
             //calculate energy
     
             energy_panel = power_of_panel * 256;
     
             efficiency = power_of_panel/(R_load * I_radiation_final*I_radiation_final)*100;
+            panel.efficiency = efficiency;
+
             
             flag_measure = false; 
         }
