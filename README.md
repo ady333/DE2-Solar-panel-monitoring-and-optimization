@@ -55,7 +55,7 @@ The current provided by the photovoltaic panel is measured using the ACS721-5A c
 This value is later used in subsequent calculations.
 
 ## Results
-We are able to succesfully compile and upload code on the Atmgea 388p chip but the functions are buggy and needs further testing and debugging in order to have correct functionality. 
+We were able to succesfully compile and upload code to the Atmega 328p microcontroller, but correct functionality and desired precision would need further parameter tweaking. 
 
 ## References and tools
 - [Simple Arduino Solar Radiation Meter](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
