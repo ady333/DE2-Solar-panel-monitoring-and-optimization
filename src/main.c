@@ -23,7 +23,6 @@ Description place holder
 //OLED is A5 and A4
 
 // panel
-#define PANEL_VOLTAGE_ADC 0
 #define PANEL_CURRENT_ADC 1
 
 //calculation - NEEDS DEFINITION, offset, current const, high-low
@@ -61,7 +60,7 @@ volatile uint16_t power_of_panel = 0;
 uint8_t photoresistor_pins[] = {PD2, PD3}; // digital photoresistor pins
 
 struct PanelData {
-    int16_t voltage;
+    int16_t efficiency;
     int16_t current;
     int16_t power;
     int16_t servo_angle;
@@ -193,7 +192,7 @@ int main(void)
 
     
     // Initialize panel data
-    panel.voltage = 0;
+    panel.efficiency = 0;
     panel.current = 0;
     panel.power = 0;
     panel.servo_angle = 0; 
@@ -204,14 +203,22 @@ int main(void)
         if (flag_measure)
         {
             // VALUES ONLY PLACEHOLDER. Adame prosím zkontroluj, případně urči konstanty
-            uint16_t adc_value = adc_read(PANEL_VOLTAGE_ADC);
-            panel.voltage = (adc_value / 1023.0) * 5000; // Convert to millivolts
-
-            adc_value = adc_read(PANEL_CURRENT_ADC);
-            panel.current = (adc_value / 1023.0) * 5000; // Convert to milliamps
-
-            panel.power = (panel.voltage * panel.current) / 1000; // Convert to milliwatts
-
+            uint16_t I_final_panel = (I_sum/(64.0*1023.0)*U_supply)*1000000/module;
+            
+            I_radiation_final = 1000000*(I_final_panel+I_offset)/I0;
+    
+            panel.current = I_radiation_final;
+    
+            //calculate power
+    
+            power_of_panel = R_load * power_final_panel*I_final_panel;
+            
+            //calculate energy
+    
+            energy_panel = power_of_panel * 256;
+    
+            efficiency = power_of_panel/(R_load * I_radiation_final*I_radiation_final)*100;
+            
             flag_measure = false; 
         }
         
@@ -219,7 +226,7 @@ int main(void)
         {
             // Update OLED display
             char current_str[8];
-            char voltage_str[8];
+            char efficiency_str[8];
             char power_str[8];
 
             // Current data display
@@ -231,14 +238,14 @@ int main(void)
             oled_gotoxy(0, 1);
             oled_puts(current_str);
             
-            // Voltage data display
+            // efficiency data display
             oled_gotoxy(0, 2);
-            oled_puts("Voltage [mV]:");
-            sprintf(voltage_str, "%d", panel.voltage);
+            oled_puts("Efficiency [%]:");
+            sprintf(efficiency_str, "%d", panel.efficiency);
             oled_gotoxy(0, 3);
             oled_puts("        ");  // Clear previous value
             oled_gotoxy(0, 3);
-            oled_puts(voltage_str);
+            oled_puts(efficiency_str);
             
             // Power data display
             oled_gotoxy(0, 4);
@@ -268,40 +275,13 @@ ISR(TIMER1_COMPA_vect)
     if(cnt == 63)
 
       {
+        //measure 
 
-        uint16_t I_final_panel = (I_sum/(64.0*1023.0)*U_supply)*1000000/module;
-
-        I_radiation_final = 1000000*(I_final_panel+I_offset)/I0;
-
- 
-
-        //calculate power
-
-        //TODO:
-
-        power_of_panel = R_load * power_final_panel*I_final_panel;
-
- 
-
-        //calculate energy
-
-        //TODO:
-
-        energy_panel = power_of_panel * 256;
-
- 
-
-        //calculate efficiency
-
-        //TODO:
-
-        efficiency = power_of_panel/(R_load * I_radiation_final*I_radiation_final)*100;
-
- 
-
+        flag_measure = false
+            
         //update OLED
 
-        flag_update_oled = 1;
+        flag_update_oled = true;
 
         }
     cnt++;
