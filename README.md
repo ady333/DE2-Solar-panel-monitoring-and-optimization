@@ -12,7 +12,6 @@ Hardware and software solution for measuiring important data of a solar panel an
 ### Hardware list
 - [Arduino Uno](https://store.arduino.cc/en-cz/products/arduino-uno-rev3?srsltid=AfmBOoovVZyf8qbg9ZrI9hX9NDjxxJZxmIjVDI9_GGtfzRbe-9TtOOlK)
 - [2W solar panel](https://www.seeedstudio.com/2W-Solar-Panel-80X180.html?srsltid=AfmBOop6e6pCLGFtqS4wp1RUDEjKHGq3ao6pdDNQLPoGoyCNA_wYi9g2)
-  ![{C41E8F50-5940-4CA5-B72A-D16025B870EA}](https://github.com/user-attachments/assets/7a776db0-eff5-42f8-8688-06eed0c3cecf)
 - [Proudový senzor 5A ACS712](https://dratek.cz/arduino/1072-5a-proudovy-senzor-acs712.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagO3sPKNKcjVXXOFWqBSw3VnbfjmYk3G59McyNn3DMNanhDyCYVnZrhoCHegQAvD_BwE)
 - [OLED display](https://dratek.cz/arduino/3181-iic-i2c-oled-1-3-displej-128x64-bily.html?gad_source=1&gclid=CjwKCAiA3Na5BhAZEiwAzrfagGTJY9aaMqUh7axe7fEJV2dWkBF2WsShhmveTVssdStMTSZZZww1mhoCKxMQAvD_BwE) 
 - relay
