@@ -28,7 +28,31 @@ Description place holder
 #define PANEL_CURRENT_ADC 1
 
 //calculation - NEEDS DEFINITION, offset, current const, high-low
+uint16_t I0 = 1;
 
+uint16_t R_load = 24;
+
+uint16_t U_supply = 5;
+
+uint16_t module = 185; // sensitivity of current sensor [mV/A]
+
+volatile uint8_t round = 0;
+
+volatile uint16_t I_sum = 0;
+
+volatile uint16_t I_offset = 0;
+
+volatile uint16_t I_radiation_final = 0;
+
+volatile uint16_t power_final_panel = 0;
+
+volatile uint16_t I_radiation = 0;
+
+uint8_t efficiency = 0;
+
+volatile uint16_t energy_panel = 0;
+
+volatile uint16_t power_of_panel = 0;
 
 // --Variables------------------------------------------------------------------//
 
