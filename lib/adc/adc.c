@@ -16,7 +16,7 @@ void adc_init(void)
 
 uint16_t adc_read(uint8_t ADC_pin)
 {
-    // Set ADC_pin
+    //if invalid ADC pin return 1
     if (ADC_pin > 5 || ADC_pin < 0)
     {
         return 1;
