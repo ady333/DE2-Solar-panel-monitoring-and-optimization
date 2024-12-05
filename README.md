@@ -34,17 +34,12 @@ Describe your implementation and include block or circuit diagram(s).
 
 ## Software description
 
-
 ### Libraries
 - OLED.h
 - adc.h
 - servo.h
 - gpio.h
 - twi.h
-### Functions
-- solar panel data collection?
-- ADC
-- ISR
 
 ## Instructions and photo
 Describe how to use the application. Add photos or videos of your application.
