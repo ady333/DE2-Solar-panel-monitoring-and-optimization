@@ -21,7 +21,8 @@ Hardware and software solution for measuiring important data of a solar panel an
   
 
 ## Circuit schematic
-![image](https://github.com/user-attachments/assets/8b63eb43-989a-42c1-b65c-ae2e348858ca)
+![{785F25B3-A056-428A-B726-6136B029C9C0}](https://github.com/user-attachments/assets/04647a2a-fdfe-4407-b6ac-54b970dfdbc8)
+
 
 ### Libraries
 - OLED.h
