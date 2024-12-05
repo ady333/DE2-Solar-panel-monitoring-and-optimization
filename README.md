@@ -2,11 +2,8 @@
 
 ## Team members
 - **Adam** (responsible for solar panel data collection)
-- **Radek** (responsible for voltage divider, servo, photoresistor)
+- **Radek** (responsible for ADC, servo, photoresistor)
 - **Marek** (responsible for OLED, README, )
-
-## TO-DO
-
 
 ## Hardware description
 
@@ -30,16 +27,16 @@ Describe your implementation and include block or circuit diagram(s).
 
 ## Software description
 
+
 ### Libraries
 - OLED.h
-- servo.h ?
 - adc.h
 ### Functions
 - solar panel data collection?
 - ADC
 - ISR
 
-## Instructions and photos
+## Instructions and photo
 Describe how to use the application. Add photos or videos of your application.
 
 ## References and tools
