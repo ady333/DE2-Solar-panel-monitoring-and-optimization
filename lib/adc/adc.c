@@ -11,7 +11,7 @@ void adc_init(void)
     ADMUX = 0x40; //Reference voltage is AVCC and 10-bit resolution
     ADCSRA |= 1<<ADEN; // Enable ADC
     ADCSRA |= 1<<ADPS2 | 1<<ADPS1 | 1<<ADPS0; // Set prescaler to 128
-    ADCSRA |= 0<<ADIE; //turn off ADC interrupt
+    ADCSRA &= ~(1<<ADIE);
 }
 
 uint16_t adc_read(uint8_t ADC_pin)
