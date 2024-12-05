@@ -27,7 +27,31 @@ Description place holder
 #define PANEL_CURRENT_ADC 1
 
 //calculation - NEEDS DEFINITION, offset, current const, high-low
+uint16_t I0 = 1;
 
+uint16_t R_load = 24;
+
+uint16_t U_supply = 5;
+
+uint16_t module = 185; // sensitivity of current sensor [mV/A]
+
+volatile uint8_t round = 0;
+
+volatile uint16_t I_sum = 0;
+
+volatile uint16_t I_offset = 0;
+
+volatile uint16_t I_radiation_final = 0;
+
+volatile uint16_t power_final_panel = 0;
+
+volatile uint16_t I_radiation = 0;
+
+uint8_t efficiency = 0;
+
+volatile uint16_t energy_panel = 0;
+
+volatile uint16_t power_of_panel = 0;
 
 // --Variables------------------------------------------------------------------//
 
@@ -243,21 +267,45 @@ ISR(TIMER1_COMPA_vect)
 {
     //execute whole routine once a second
     static uint8_t cnt = 0;
-    if (cnt == 3)
-    {
+    if(cnt == 63)
+
+      {
+
+        uint16_t I_final_panel = (I_sum/(64.0*1023.0)*U_supply)*1000000/module;
+
+        I_radiation_final = 1000000*(I_final_panel+I_offset)/I0;
+
+ 
 
         //calculate power
+
         //TODO:
+
+        power_of_panel = R_load * power_final_panel*I_final_panel;
+
+ 
 
         //calculate energy
+
         //TODO:
+
+        energy_panel = power_of_panel * 256;
+
+ 
 
         //calculate efficiency
+
         //TODO:
 
+        efficiency = power_of_panel/(R_load * I_radiation_final*I_radiation_final)*100;
+
+ 
+
         //update OLED
+
         flag_update_oled = 1;
-    }
+
+        }
     cnt++;
 }
 // -- end of file --//
