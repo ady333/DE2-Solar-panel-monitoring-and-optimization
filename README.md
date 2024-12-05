@@ -54,6 +54,9 @@ The photoresistors are connected in a voltage divider configuration according to
 The current provided by the photovoltaic panel is measured using the ACS721-5A circuit. The circuit was originally designed for MPPT (Maximum Power Point Tracking) using the short-circuit current method, where the maximum is determined based on the short-circuit current provided by the solar panel. This current was initially supposed to be measured using a switching relay; however, due to time constraints, this was not implemented. Instead, this value was determined to be slightly over 3 mA under typical overcast winter conditions.
 This value is later used in subsequent calculations.
 
+-![image](https://github.com/user-attachments/assets/41f0fb2b-c64f-4230-a750-7cfafa775cfd)
+
+
 ## Results
 We were able to succesfully compile and upload code to the Atmega 328p microcontroller, but correct functionality and desired precision would need further parameter tweaking. 
 
