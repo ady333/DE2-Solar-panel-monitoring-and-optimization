@@ -13,6 +13,7 @@ Description place holder
 #include <gpio.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 // --Defines--------------------------------------------------------------------//
 // define pins here
@@ -103,15 +104,15 @@ uint16_t read_photoresistor(uint8_t ADC_pin, uint8_t digital_pin)
  * @param photoresistor_values 
  * @return int16_t 
  */
-int16_t photores_difference(uint16_t photoresistor_values[2])
-{
+uint16_t photores_difference(uint16_t photoresistor_values[2])
+{   
+    static uint16_t diff = 0;
     //read values from photoresistors
-    int16_t diff = 0;
     for (uint8_t i = 0; i < 2; i++)
     {
         photoresistor_values[i] = read_photoresistor(photorezistor_ADC, photoresistor_pins[i]);
     }
-    diff = (photoresistor_values[0] - photoresistor_values[1]) * 180 / 1023;
+    diff = (1023 + photoresistor_values[0] - photoresistor_values[1]) * 180 / (2*1023);
     return diff;
 }
 
@@ -141,8 +142,9 @@ void servo_set_angle(uint16_t angle)
     OCR0A = duty;
 }
 
-void determine_servo_shift(int16_t difference)
+void determine_servo_shift(uint16_t difference)
 {
+    difference = abs(difference-panel.servo_angle);
     //determine the shift of the servo
     if (difference > -5 && difference < 5)
     {
@@ -179,7 +181,7 @@ int main(void)
     adc_init();
     servo_init();
     
-    TIM1_ovf_262ms(); //double check
+    TIM1_ovf_4ms(); //double check
 
     sei();
 
@@ -200,6 +202,7 @@ int main(void)
     // Main loop
     while (1)
     {
+
         if (flag_measure)
         {
             uint16_t I_panel = adc_read(PANEL_CURRENT_ADC);
@@ -274,19 +277,22 @@ int main(void)
 ISR(TIMER1_COMPA_vect)
 {
     //execute whole routine once a second
-    static uint8_t cnt = 0;
-    if(cnt == 63)
+    static uint8_t cnt_mes = 0;
+    static uint8_t cnt_oled = 0;
+    static uint8_t cnt_servo = 0;
+
+    if(cnt_mes == 63)
 
       {
         //measure 
 
-        flag_measure = false
+        flag_measure = false;
             
         //update OLED
 
         flag_update_oled = true;
 
         }
-    cnt++;
+    cnt_mes++;
 }
 // -- end of file --//
