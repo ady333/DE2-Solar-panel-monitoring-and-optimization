@@ -44,6 +44,15 @@ Describe your implementation and include block or circuit diagram(s).
 
 ## Instructions and photo
 Describe how to use the application. Add photos or videos of your application.
+This project serves as an optimizer for the ideal orientation of a relatively close field of solar panels. This setup consists of a monocrystalline solar panel, a sensing and control circuit, along with a display. Depending on the illumination of individual photoresistors, the servo motor rotates accordingly, representing the orientation of the solar panel. This is a single-axis setup, meaning the circuit and corresponding software are designed for two photoresistors and one servo motor. The resulting necessary values for information purposes are displayed on a screen. Initially, an external memory module was also planned to store the acquired data. The circuit is designed to operate fully autonomously immediately after being put into operation.
+
+
+The photoresistors are connected in a voltage divider configuration according to the schematic. On both resistors, one contact is connected to a digital signal that acts as a switch. The resulting voltage is measured across a 1kΩ resistor. The resulting voltages are then sensed and compared. For the photoresistors under these conditions, it follows that their resistance can drop to approximately 300Ω when the sun is overcast. In complete darkness, their resistance reaches several kiloohms.
+
+
+The current provided by the photovoltaic panel is measured using the ACS721-5A circuit. The circuit was originally designed for MPPT (Maximum Power Point Tracking) using the short-circuit current method, where the maximum is determined based on the short-circuit current provided by the solar panel. This current was initially supposed to be measured using a switching relay; however, due to time constraints, this was not implemented. Instead, this value was determined to be slightly over 3 mA under typical overcast winter conditions.
+This value is later used in subsequent calculations.
+
 
 ## References and tools
 - [Simple Arduino Solar Radiation Meter](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
