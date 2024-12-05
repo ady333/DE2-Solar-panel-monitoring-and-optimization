@@ -2,8 +2,8 @@
 
 ## Team members
 - **Adam** (responsible for solar panel data collection)
-- **Radek** (responsible for voltage divider)
-- **Marek** (responsible for OLED, README, schematic)
+- **Radek** (responsible for voltage divider, servo, photoresistor)
+- **Marek** (responsible for OLED, README, )
 
 ## TO-DO
 
