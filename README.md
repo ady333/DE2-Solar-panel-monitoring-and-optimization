@@ -9,6 +9,7 @@
 
 ### Hardware list
 - [Arduino Uno](https://store.arduino.cc/en-cz/products/arduino-uno-rev3?srsltid=AfmBOoovVZyf8qbg9ZrI9hX9NDjxxJZxmIjVDI9_GGtfzRbe-9TtOOlK)
+  ![image](https://github.com/user-attachments/assets/9fc8ed89-ef09-48d7-9af8-5ad05179c47c)
 - [2W solar panel](https://www.seeedstudio.com/2W-Solar-Panel-80X180.html?srsltid=AfmBOop6e6pCLGFtqS4wp1RUDEjKHGq3ao6pdDNQLPoGoyCNA_wYi9g2)
   ![{C41E8F50-5940-4CA5-B72A-D16025B870EA}](https://github.com/user-attachments/assets/7a776db0-eff5-42f8-8688-06eed0c3cecf)
   ![image](https://github.com/user-attachments/assets/d84bc595-7406-440f-bf91-510fc132af42)
