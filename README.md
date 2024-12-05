@@ -24,13 +24,6 @@ Hardware and software solution for measuiring important data of a solar panel an
 ## Circuit schematic
 ![image](https://github.com/user-attachments/assets/8b63eb43-989a-42c1-b65c-ae2e348858ca)
 
-## deprecated schematics
- ![1000010447](https://github.com/user-attachments/assets/ada05d3a-31f8-4791-bea2-af8901ae8706)
-![1000010446](https://github.com/user-attachments/assets/2549ac60-b7af-41c0-96e0-6917e07c255e)
-![1000010448](https://github.com/user-attachments/assets/0eaabee9-790b-423e-83fb-fc495fd5cba4)
-~~[simple schematic](https://docs.google.com/presentation/d/1u240EyscOu1TMV3R26A9XNAYTfE4c-NHmTZzbbc4IIg/edit?usp=sharing)~~ (deprecated)
-## Software description
-
 ### Libraries
 - OLED.h
 - adc.h
