@@ -202,6 +202,9 @@ int main(void)
     {
         if (flag_measure)
         {
+            uint16_t I_panel = adc_read(PANEL_CURRENT_ADC);
+            I_sum += I_panel;
+            
             // VALUES ONLY PLACEHOLDER. Adame prosím zkontroluj, případně urči konstanty
             uint16_t I_final_panel = (I_sum/(64.0*1023.0)*U_supply)*1000000/module;
             
