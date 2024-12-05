@@ -25,6 +25,7 @@ Describe your implementation and include block or circuit diagram(s).
 - add full detailed schematic
  ![1000010447](https://github.com/user-attachments/assets/ada05d3a-31f8-4791-bea2-af8901ae8706)
 ![1000010446](https://github.com/user-attachments/assets/2549ac60-b7af-41c0-96e0-6917e07c255e)
+![1000010448](https://github.com/user-attachments/assets/0eaabee9-790b-423e-83fb-fc495fd5cba4)
 
 
 ## Software description
