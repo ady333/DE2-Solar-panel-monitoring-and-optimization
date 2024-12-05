@@ -5,7 +5,9 @@
 - **Radek** (responsible for ADC, servo, photoresistor)
 - **Marek** (responsible for OLED, README, main.c)
 
-## Hardware description
+## Description
+Hardware and software solution for measuiring important data of a solar panel and capable of self rotation calibration based on photoresistor readings.
+
 
 ### Hardware list
 - [Arduino Uno](https://store.arduino.cc/en-cz/products/arduino-uno-rev3?srsltid=AfmBOoovVZyf8qbg9ZrI9hX9NDjxxJZxmIjVDI9_GGtfzRbe-9TtOOlK)
@@ -43,7 +45,7 @@ Describe your implementation and include block or circuit diagram(s).
 - twi.h
 
 ## Instructions and photo
-Describe how to use the application. Add photos or videos of your application.
+
 This project serves as an optimizer for the ideal orientation of a relatively close field of solar panels. This setup consists of a monocrystalline solar panel, a sensing and control circuit, along with a display. Depending on the illumination of individual photoresistors, the servo motor rotates accordingly, representing the orientation of the solar panel. This is a single-axis setup, meaning the circuit and corresponding software are designed for two photoresistors and one servo motor. The resulting necessary values for information purposes are displayed on a screen. Initially, an external memory module was also planned to store the acquired data. The circuit is designed to operate fully autonomously immediately after being put into operation.
 
 
@@ -53,6 +55,8 @@ The photoresistors are connected in a voltage divider configuration according to
 The current provided by the photovoltaic panel is measured using the ACS721-5A circuit. The circuit was originally designed for MPPT (Maximum Power Point Tracking) using the short-circuit current method, where the maximum is determined based on the short-circuit current provided by the solar panel. This current was initially supposed to be measured using a switching relay; however, due to time constraints, this was not implemented. Instead, this value was determined to be slightly over 3 mA under typical overcast winter conditions.
 This value is later used in subsequent calculations.
 
+## Results
+We are able to succesfully compile and upload code on the Atmgea 388p chip but the functions are buggy and needs further testing and debugging in order to have correct functionality. 
 
 ## References and tools
 - [Simple Arduino Solar Radiation Meter](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
